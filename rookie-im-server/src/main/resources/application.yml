@@ -3,6 +3,9 @@ server:
 spring:
   profiles:
     active: prod
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     url: jdbc:mysql://${rookie-im.mysql.ip}:${rookie-im.mysql.port}/${rookie-im.mysql.db}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: ${rookie-im.mysql.username}

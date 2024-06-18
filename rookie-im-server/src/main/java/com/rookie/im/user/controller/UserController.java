@@ -5,13 +5,12 @@ import com.rookie.im.common.domain.resp.ApiResult;
 import com.rookie.im.user.domain.req.ImportUserReq;
 import com.rookie.im.user.domain.resp.ImportUserResp;
 import com.rookie.im.user.service.IUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -25,17 +24,19 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户资料相关接口")
 public class UserController {
 
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/test")
+    @GetMapping("/test")
     public String getUser(){
         return userService.getUserById(5).getUserName();
     }
 
     @PutMapping("/import")
+    @ApiOperation(value = "用户资料导入")
     public ApiResult<ImportUserResp> importUser(@RequestBody @Valid ImportUserReq req){
         ImportUserResp resp = userService.importUsers(req);
         return ApiResult.success(resp);
