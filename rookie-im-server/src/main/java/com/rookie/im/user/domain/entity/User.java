@@ -30,7 +30,7 @@ public class User implements Serializable {
     /**
      * 主键 ID
      */
-      @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**

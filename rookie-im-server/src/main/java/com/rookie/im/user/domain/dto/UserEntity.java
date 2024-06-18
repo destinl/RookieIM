@@ -1,6 +1,10 @@
 package com.rookie.im.user.domain.dto;
 
+import com.rookie.im.common.annotation.IsMobile;
 import lombok.Data;
+import lombok.NonNull;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @Description:
@@ -12,18 +16,23 @@ public class UserEntity {
 
     private long appId;
 
+    @NotNull
     private String userName;
+
+
     /**
      * 用户手机号
      */
-
+    @NotNull
+    @IsMobile
     private String mobile;
+
 
     /**
      * 用户邮箱
      */
-
     private String email;
+
 
     /**
      * 用户头像
