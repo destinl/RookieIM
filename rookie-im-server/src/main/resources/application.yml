@@ -1,6 +1,11 @@
+server:
+  port: ${rookie-im.server.port}
 spring:
   profiles:
     active: prod
+  datasource:
+    url: jdbc:mysql://${rookie-im.mysql.ip}:${rookie-im.mysql.port}/${rookie-im.mysql.db}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: ${rookie-im.mysql.username}
+    password: ${rookie-im.mysql.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
-server:
-  port: ${rookie-im.server.port}
