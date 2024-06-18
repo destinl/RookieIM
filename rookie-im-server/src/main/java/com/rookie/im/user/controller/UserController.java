@@ -3,6 +3,7 @@ package com.rookie.im.user.controller;
 
 import com.rookie.im.common.domain.resp.ApiResult;
 import com.rookie.im.user.domain.req.ImportUserReq;
+import com.rookie.im.user.domain.resp.ImportUserResp;
 import com.rookie.im.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,9 +34,9 @@ public class UserController {
     }
 
     @PutMapping("/import")
-    public ApiResult<Void> importUser(@RequestBody ImportUserReq req){
-        userService.importUsers(req);
-        return ApiResult.success();
+    public ApiResult<ImportUserResp> importUser(@RequestBody ImportUserReq req){
+        ImportUserResp resp = userService.importUsers(req);
+        return ApiResult.success(resp);
     }
 
 }
