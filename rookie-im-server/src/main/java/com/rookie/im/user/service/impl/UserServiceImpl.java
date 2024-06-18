@@ -1,8 +1,11 @@
 package com.rookie.im.user.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rookie.im.common.domain.resp.PageResponse;
 import com.rookie.im.common.exception.BusinessException;
 import com.rookie.im.common.exception.UserExceptionEnum;
 import com.rookie.im.user.dao.UserDao;
+import com.rookie.im.user.domain.dto.UserEntity;
 import com.rookie.im.user.domain.entity.User;
 import com.rookie.im.user.domain.req.ImportUserReq;
 import com.rookie.im.user.domain.resp.ImportUserResp;
@@ -47,5 +50,27 @@ public class UserServiceImpl implements IUserService {
         });
         resp.setErrorImportUserNames(errUserName);
         return resp;
+    }
+
+    @Override
+    public PageResponse<UserEntity> getAllUser(Long appId, Long page, Integer pageSize) {
+        List<UserEntity> userInfoList = new ArrayList<>();
+
+        Page<User> userPage = new Page<>(page, pageSize);
+
+        Page<User> allUser = userDao.getAllUser(appId, userPage);
+
+        allUser.getRecords().forEach(record -> {
+            UserEntity entity = UserAdapter.buildUserInfo(record);
+            userInfoList.add(entity);
+        });
+
+        PageResponse<UserEntity> response = new PageResponse<>();
+        response.setRecords(userInfoList);
+        response.setTotal(allUser.getTotal());
+        response.setPage(page);
+        response.setPageSize(pageSize);
+
+        return response;
     }
 }

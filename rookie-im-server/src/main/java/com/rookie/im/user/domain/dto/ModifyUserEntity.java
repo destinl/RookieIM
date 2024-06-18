@@ -7,11 +7,11 @@ import lombok.Data;
 /**
  * @Description:
  * @Author: ls
- * @Date: 2024/6/1815:23
+ * @Date: 2024/6/1810:39
  */
 @Data
 @ApiModel("用户资料实体")
-public class UserEntity {
+public class ModifyUserEntity {
 
     @ApiModelProperty("用户ID")
     private String userId;
@@ -49,9 +49,7 @@ public class UserEntity {
     @ApiModelProperty("用户个性签名")
     private String selfSignature;
 
-    @ApiModelProperty("管理员禁止用户添加加好友：0 未禁用 1 已禁用")
-    private Integer disableAddFriend;
-
+//    private Integer disableAddFriend;
 
     @ApiModelProperty("加好友验证类型（Friend_AllowType） 1无需验证 2需要验证")
     private Integer friendAllowType;
