@@ -1,5 +1,6 @@
 package com.rookie.im.core.server;
 
+import com.rookie.im.core.codec.WebSocketMessageDecoder;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -60,6 +61,8 @@ public class ImServer {
                             pipeline.addLast("http-chunked", new ChunkedWriteHandler());
                             pipeline.addLast("aggregator", new HttpObjectAggregator(65535));
                             pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
+                            pipeline.addLast(new WebSocketMessageDecoder());
+                            pipeline.addLast(new ServerHandler());
                         }
                     });
             ChannelFuture future = bootstrap.bind(port).sync();
