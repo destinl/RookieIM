@@ -29,6 +29,8 @@
         <mysql-connector.version>8.0.29</mysql-connector.version>
         <lombok.version>1.18.30</lombok.version>
         <hutool.version>5.8.18</hutool.version>
+        <snakeyaml.version>1.27</snakeyaml.version>
+        <redisson.version>3.15.6</redisson.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -66,6 +68,16 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

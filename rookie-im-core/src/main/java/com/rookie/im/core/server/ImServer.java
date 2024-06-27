@@ -1,6 +1,7 @@
 package com.rookie.im.core.server;
 
 import com.rookie.im.core.codec.WebSocketMessageDecoder;
+import com.rookie.im.core.config.AppConfig;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -32,14 +33,17 @@ public class ImServer {
     private int port;
     private Channel serverChannel;
 
+    private AppConfig.WebSocketConfig webSocketConfig;
+
 //    public ImServer(int port){
 //        this.port = port;
 //    }
 
-    public ImServer(){
-        loadConfig();
-        bossGroup = new NioEventLoopGroup(1);
-        workerGroup = new NioEventLoopGroup();
+    public ImServer(AppConfig.WebSocketConfig webSocketConfig){
+        this.webSocketConfig = webSocketConfig;
+        this.port = webSocketConfig.getPort();
+        bossGroup = new NioEventLoopGroup(webSocketConfig.getBossThreadSize());
+        workerGroup = new NioEventLoopGroup(webSocketConfig.getWorkThreadSize());
         start();
 
     }
