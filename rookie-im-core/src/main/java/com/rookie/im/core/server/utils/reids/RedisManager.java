@@ -1,6 +1,7 @@
 package com.rookie.im.core.server.utils.reids;
 
 import com.rookie.im.core.config.AppConfig;
+import lombok.Getter;
 import org.redisson.api.RedissonClient;
 
 /**
@@ -10,6 +11,7 @@ import org.redisson.api.RedissonClient;
  */
 public class RedisManager {
 
+    @Getter
     private static RedissonClient redissonClient;
 
     public static void init(AppConfig appConfig) {

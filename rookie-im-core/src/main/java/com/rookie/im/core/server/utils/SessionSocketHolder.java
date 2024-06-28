@@ -23,4 +23,13 @@ public class SessionSocketHolder {
         userClientDto.setImei(imei);
         CHANNELS.put(userClientDto, channel);
     }
+
+    public static void remove(Integer appId, String userId, Integer clientType, String imei) {
+        UserClientDto userClientDto = new UserClientDto();
+        userClientDto.setAppId(appId);
+        userClientDto.setUserId(userId);
+        userClientDto.setClientType(clientType);
+        userClientDto.setImei(imei);
+        CHANNELS.remove(userClientDto);
+    }
 }

@@ -14,4 +14,8 @@ public class Constants {
 
     public final static String IMEI = "imei";
 
+    public static class RedisConstants{
+        public static final String UserSessionConstants = ":userSession:";
+    }
+
 }
