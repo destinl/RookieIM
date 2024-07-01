@@ -11,6 +11,7 @@
         <module>rookie-im-server</module>
         <module>rookie-im-framework</module>
         <module>rookie-im-core</module>
+        <module>rabbitmq-study</module>
     </modules>
 
     <parent>
