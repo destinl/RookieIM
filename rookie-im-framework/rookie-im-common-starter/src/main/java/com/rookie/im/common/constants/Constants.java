@@ -1,4 +1,4 @@
-package com.rookie.im.core.server.constants;
+package com.rookie.im.common.constants;
 
 /**
  * @Description:
@@ -18,4 +18,12 @@ public class Constants {
         public static final String UserSessionConstants = ":userSession:";
     }
 
+    public static class RabbitConstants{
+        public static final String Im2MessageService = "pipeline2MessageService";
+
+        public static final String Im2UserService = "pipeline2UserService";
+
+        public static final String Im2GroupService = "pipeline2GroupService";
+
+    }
 }

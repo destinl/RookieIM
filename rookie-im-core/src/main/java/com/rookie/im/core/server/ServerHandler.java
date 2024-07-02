@@ -2,22 +2,18 @@ package com.rookie.im.core.server;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.rookie.im.common.enums.ImConnectStatusEnum;
 import com.rookie.im.common.enums.command.SystemCommand;
 import com.rookie.im.core.codec.pack.LoginPack;
 import com.rookie.im.core.codec.proto.Message;
-import com.rookie.im.core.server.domain.model.UserSession;
+import com.rookie.im.core.mq.publish.MqMessageProducer;
 import com.rookie.im.core.server.utils.SessionSocketHolder;
-import com.rookie.im.core.server.utils.reids.RedisManager;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.api.RMap;
-import org.redisson.api.RedissonClient;
 
-import static com.rookie.im.core.server.constants.Constants.*;
+import static com.rookie.im.common.constants.Constants.*;
 
 
 /**
@@ -34,7 +30,13 @@ public class ServerHandler extends SimpleChannelInboundHandler<Message> {
             handleLogin(ctx, msg);
         } else if(command == SystemCommand.LOGOUT.getCommand()){
             handleLogout(ctx);
+        } else {
+            handleMessage(msg, command);
         }
+    }
+
+    private void handleMessage(Message msg, Integer command) {
+        MqMessageProducer.sendMessage(msg, command);
     }
 
     private void handleLogout(ChannelHandlerContext ctx) {

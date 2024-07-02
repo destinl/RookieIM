@@ -34,7 +34,7 @@ public class MqFactory {
         });
     }
 
-    private static Connection getConnection() {
+    public static Connection getConnection() {
         synchronized (lock) {
             if (connection == null) {
                 try {

@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.rookie.im.common.enums.ImConnectStatusEnum;
 import com.rookie.im.core.codec.pack.LoginPack;
 import com.rookie.im.core.codec.proto.Message;
-import com.rookie.im.core.server.constants.Constants;
+import com.rookie.im.common.constants.Constants;
 import com.rookie.im.core.server.domain.dto.UserClientDto;
 import com.rookie.im.core.server.domain.model.UserSession;
 import com.rookie.im.core.server.utils.reids.RedisManager;
@@ -17,8 +17,8 @@ import org.redisson.api.RedissonClient;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.rookie.im.core.server.constants.Constants.*;
-import static com.rookie.im.core.server.constants.Constants.IMEI;
+import static com.rookie.im.common.constants.Constants.*;
+import static com.rookie.im.common.constants.Constants.IMEI;
 
 /**
  * @Description:
