@@ -29,6 +29,12 @@ public class RabbitMQService {
         return "ok";
     }
 
+    public String sendMsgByFanoutExchange(String msg){
+        rabbitTemplate.convertAndSend(RabbitMQConfig.FANOUT_EXCHANGE_DEMO_NAME,
+                "", getMessage(msg));
+        return "ok";
+    }
+
     private Map<String, Object> getMessage(String msg){
         String msgId = UUID.randomUUID().toString().replace("-", "").substring(0, 32);
         String sendTime =sdf.format(new Date());

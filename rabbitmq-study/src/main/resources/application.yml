@@ -1,6 +1,8 @@
 spring:
+  profiles:
+    active: prod
   rabbitmq:
-    host:
-    port:
-    username:
-    password:
+    host: ${rabbitmq.host}
+    port: ${rabbitmq.port}
+    username: ${rabbitmq.username}
+    password: ${rabbitmq.password}

@@ -24,4 +24,9 @@ public class RabbitMQController {
     public String sendMsg(@RequestParam(name = "msg") String msg){
         return rabbitMQService.sendMsg(msg);
     }
+
+    @PostMapping("/fanout")
+    public String sendMsgByFanout(@RequestParam(name = "msg") String msg){
+        return rabbitMQService.sendMsgByFanoutExchange(msg);
+    }
 }
