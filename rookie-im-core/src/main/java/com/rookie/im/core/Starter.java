@@ -1,6 +1,7 @@
 package com.rookie.im.core;
 
 import com.rookie.im.core.config.AppConfig;
+import com.rookie.im.core.mq.factory.MqFactory;
 import com.rookie.im.core.server.ImServer;
 
 import java.io.FileInputStream;
@@ -30,6 +31,8 @@ public class Starter {
             inputStream = new FileInputStream(path);
             AppConfig appConfig = yaml.loadAs(inputStream, AppConfig.class);
             RedisManager.init(appConfig);
+            MqFactory.init(appConfig.getRookie().getRabbitmq());
+
             new ImServer(appConfig.getRookie());
         } catch (Exception e) {
             throw new RuntimeException(e);

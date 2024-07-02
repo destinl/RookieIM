@@ -1,6 +1,8 @@
 package com.rookie.im.core.config;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Description:
@@ -25,6 +27,7 @@ public class AppConfig {
 
         private RedisConfig redis;
 
+        private Rabbitmq rabbitmq;
     }
 
     @Data
@@ -67,5 +70,21 @@ public class AppConfig {
     @Data
     public static class RedisSingle {
         private String address;
+    }
+
+    @Data
+//    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Rabbitmq {
+        private String host;
+
+        private Integer port;
+
+        private String virtualHost;
+
+        private String userName;
+
+        private String password;
     }
 }

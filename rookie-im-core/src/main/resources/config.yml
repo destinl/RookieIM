@@ -13,3 +13,10 @@ rookie:
     poolSize: 10
     single:
       address: localhost:6379
+
+  rabbitmq:
+    host: #${rabbitmq.host}
+    port: #${rabbitmq.port}
+    virtualHost: /
+    username: #${rabbitmq.username}
+    password: #${rabbitmq.password}
