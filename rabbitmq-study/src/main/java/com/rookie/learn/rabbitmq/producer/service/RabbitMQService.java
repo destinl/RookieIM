@@ -1,6 +1,9 @@
 package com.rookie.learn.rabbitmq.producer.service;
 
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import com.rookie.learn.rabbitmq.config.RabbitMQConfig;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +35,22 @@ public class RabbitMQService {
     public String sendMsgByFanoutExchange(String msg){
         rabbitTemplate.convertAndSend(RabbitMQConfig.FANOUT_EXCHANGE_DEMO_NAME,
                 "", getMessage(msg));
+        return "ok";
+    }
+
+    public String sendMsgByTopicExchange(String msg, String routingKey){
+        rabbitTemplate.convertAndSend(RabbitMQConfig.TOPIC_EXCHANGE_DEMO_NAME, routingKey,  getMessage(msg));
+        return "ok";
+    }
+
+    public String sendMsgByHeadersExchange(String msg, Map<String, Object> map){
+        MessageProperties messageProperties = new MessageProperties();
+        messageProperties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+        messageProperties.setContentType("UTF-8");
+
+        messageProperties.getHeaders().putAll(map);
+        Message message = new Message(msg.getBytes(), messageProperties);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.HEADERS_EXCHANGE_DEMO_NAME, null, message);
         return "ok";
     }
 
