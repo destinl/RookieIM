@@ -27,4 +27,22 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version> <!-- 使用适合的版本号 -->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.rookie.learn.rabbitmq.Application</mainClass> <!-- 替换为实际的 main 类 -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 其他插件 -->
+        </plugins>
+    </build>
 </project>
